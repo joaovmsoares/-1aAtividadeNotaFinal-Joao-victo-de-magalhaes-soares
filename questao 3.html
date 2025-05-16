@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <style>
+    body {
+      font-family: Arial
+      background-color: #e6f0ff
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh
+      margin: 0
+    }
+
+    .form-box {
+      background: white
+      padding: 25px
+      border-radius: 6px
+      box-shadow: 0 0 10px rgba(0,0,0,0.1)
+      width: 300px
+    }
+
+    h2 {
+      color: #003366
+    }
+
+    input {
+      width: 100%
+      padding: 10px
+      margin: 10px 0
+      border: 1px solid #ccc
+      border-radius: 4px
+    }
+
+    button {
+      background-color: #003366
+      color: white
+      border: none
+      padding: 10px
+      width: 100%
+      cursor: pointer
+      border-radius: 4px
+    }
+
+    .msg {
+      margin-top: 15px
+      font-weight: bold
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Cadastro</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Nome de Usuário">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Senha">
+      <button type="submit">Registrar</button>
+    </form>
+    <div class="msg" id="messageBox"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const msgBox = document.getElementById('messageBox');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (username === "" || email === "" || password === "") {
+        msgBox.innerText = "Por favor, preencha todos os campos."
+        msgBox.style.color = "red"
+        return
+      }
+
+      if (!email.includes("@")) {
+        msgBox.innerText = "Email inválido."
+        msgBox.style.color = "red"
+        return
+      }
+
+      if(password.length < 4){
+        msgBox.innerText = "Senha deve ter pelo menos 4 caracteres."
+        msgBox.style.color = "red"
+        return
+      }
+
+      msgBox.innerText = "Cadastro realizado com sucesso!"
+      msgBox.style.color = "green"
+    });
+  </script>
+
+</body>
+</html>
